@@ -4,6 +4,7 @@ import localFont from "next/font/local"; // Importar corretamente
 import "./globals.css";
 
 import { cn } from '@/lib/utils'
+import { ThemeProvider } from "@/components/theme-provider";
 
 // Definindo a fonte Plus Jakarta Sans do Google Fonts
 const fontSans = Plus_Jakarta_Sans({ 
@@ -27,7 +28,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn('min-h-screen bg-dark-300 font-sans antialiased', fontSans.variable)}>
-        {children}
+      <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
       </body>
     </html>
   );
