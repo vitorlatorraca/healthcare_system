@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Plus_Jakarta_Sans } from "next/font/google";
+import localFont from "next/font/local"; // Importar corretamente
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+import { cn } from '@/lib/utils'
+
+// Definindo a fonte Plus Jakarta Sans do Google Fonts
+const fontSans = Plus_Jakarta_Sans({ 
+  subsets: ["latin"],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-sans'
 });
 
+
+// Definição dos metadados
 export const metadata: Metadata = {
   title: "Carepulse",
   description: "A health care system management.",
@@ -25,9 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={cn('min-h-screen bg-dark-300 font-sans antialiased', fontSans.variable)}>
         {children}
       </body>
     </html>
